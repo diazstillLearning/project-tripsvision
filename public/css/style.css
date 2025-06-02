@@ -1,0 +1,497 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
+
+/* Root Variables */
+:root {
+  --primary: #eeeeee;
+  --secondary: #6196c1;
+  --green: #070c03;
+  --secondary-light: rgba(34, 124, 112, 0.2);
+  --secondary-light-2: rgba(127, 183, 126, 0.1);
+  --white: #fff;
+  --black: #393e46;
+  --shadow: 0px 2px 8px 0px var(--secondary-light);
+  --h1-font: 6rem;
+  --h2-font: 3rem;
+  --p-font: 1rem;
+}
+
+body {
+  margin: 0; /* Remove default margin */
+  font-family: Arial, sans-serif; /* Set font for the body */
+  background-color: white; /* Set your background image */
+  background-size: cover; /* Cover the entire body */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+}
+
+.navbar {
+  display: flex; /* Use flexbox for navbar layout */
+  justify-content: space-between; /* Space between brand and links */
+  align-items: center; /* Center items vertically */
+  background-color: #6196c1; /* Navbar background color with transparency */
+  padding: 0; /* Padding for navbar */
+  color: white; /* Text color */
+}
+.navbar img {
+  max-width: 100px;
+  max-height: 100px;  
+}
+
+.navbar-brand {
+  font-size: 24px; /* Brand font size */
+}
+
+.navbar-links a {
+  color: white; /* Link text color */
+  text-decoration: none; /* Remove underline */
+  margin: 0 15px; /* Space between links */
+}
+
+.navbar-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+.profile-dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.profile-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 150px;
+  border-radius: 50px;
+  color: var(--black);
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
+    border 0.3s;
+}
+
+.profile-dropdown-btn:hover {
+  background-color: var(--secondary-light-2);
+  box-shadow: var(--shadow);
+}
+
+.profile-img {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: url("../imagesProperty/dasdsa.jpg");
+  background-size: cover;
+  overflow: hidden;
+}
+
+.profile-img i {
+  position: absolute;
+  right: 0;
+  bottom: 0.3rem;
+  font-size: 0.5rem;
+  color: var(--green);
+}
+
+.profile-dropdown-btn span {
+  margin: 0 0.5rem;
+}
+
+.profile-dropdown-list {
+  position: absolute;
+  top: 68px;
+  right: 0;
+  width: 220px;
+  background-color: var(--white);
+  border-radius: 10px;
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: max-height 0.5s ease-in-out;
+}
+
+.profile-dropdown-list hr {
+  border: 0.5px solid var(--green);
+}
+
+.profile-dropdown-list.active {
+  max-height: 500px;
+}
+
+.profile-dropdown-list-item {
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease-in, padding-left 0.2s;
+}
+
+.profile-dropdown-list-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.profile-dropdown-list-item a i {
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  line-height: 2.3rem;
+  text-align: center;
+  border-radius: 50%;
+  transition: margin-right 0.3s;
+}
+
+.profile-dropdown-list-item:hover {
+  padding-left: 1.5rem;
+  background-color: var(--secondary-light);
+}
+
+.search-container {
+  display: flex;
+  justify-content: center; /* Center the search container horizontally */
+  align-items: center; /* Center items vertically */
+  padding: 10px 0; /* Add some padding above and below the search bar */
+}
+
+.search-input {
+  border: 1px solid #ccc; /* Border for input */
+  outline: none; /* Remove outline on focus */
+  padding: 10px; /* Padding inside the input */
+  font-size: 16px; /* Font size */
+  width: 250px; /* Set a specific width for the input */
+  border-radius: 5px 0 0 5px; /* Rounded corners on left */
+}
+
+.search-button {
+  background-color: #6196c1; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  border-radius: 0 5px 5px 0; /* Rounded corners on right */
+  padding: 10px 15px; /* Padding for button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Darker button color on hover */
+}
+
+.image-grid {
+  display: flex; /* Enable flexbox layout */
+  justify-content: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 20px; /* Space between images */
+  padding: 20px; /* Padding around the grid */
+}
+
+.image-grid img {
+  flex: 1 1 150px; /* Grow and shrink, with a base width of 150px */
+  max-width: 500px; /* Limit max width for 4 images per row */
+  border-radius: 10px; /* Optional: rounded corners for images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  transition: transform 0.2s; /* Smooth transform on hover */
+}
+
+.image-grid img:hover {
+  transform: scale(1.05); /* Slightly enlarge image on hover */
+}
+.text-primary {
+  text-align: center;
+  margin: 20px 0;
+  color: black;
+  font-size: 40px;
+}
+.image-title {
+  text-align: inherit;
+  color: black;
+}
+
+footer {
+  text-align: center;
+  background-color: #6196c1;
+  bottom: 0;
+  margin: 0;
+  padding-top: 50px;
+  width: 100%;
+}
+
+/* Tampilan container footer */
+.container {
+  width: 1140px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tampilan footer item */
+.footer {
+  width: 33.3%;
+}
+
+h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Menambahkan padding dan warna latar belakang pada konten footer */
+.footer-content {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #6196c1;
+  color: white;
+}
+
+/* Styling teks di dalam footer */
+.footer-content p {
+  width: 190px;
+  margin: auto;
+  padding: 7px;
+}
+
+/* Styling list di dalam footer */
+.footer-content ul {
+  text-align: center;
+}
+
+.list {
+  padding: 0;
+}
+
+.list li {
+  width: auto;
+  text-align: center;
+  list-style-type: none;
+  padding: 7px;
+  position: relative;
+}
+
+/* Efek hover pada list items */
+.list li::before {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background-color: #6196c1;
+  transition-duration: 0.5s;
+}
+
+/* Hover effect pada list */
+.list li:hover::before {
+  width: 70px;
+}
+
+/* Styling untuk social media icons */
+.social-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0 0;
+}
+
+.social-list li {
+  margin: 0 15px;
+}
+
+.social-list a:hover {
+  color: #6196c1;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #6196c1;
+}
+
+.sosial-icons i:hover {
+  color: #6196c1;
+}
+
+/* Bottom bar styling */
+.bottom-bar {
+  background-color: #6196c1;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 50px;
+}
+
+.bottom-bar p {
+  color: white;
+  margin: 0;
+  font-size: 16px;
+  padding: 7px;
+} 
+
+
+/* Login Section Styling */
+.login-container {
+  position: relative;
+  background-image: url('../imagesProperty/sipiso2.jpg'); /* Ganti dengan path gambar yang sesuai */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam untuk efek */
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+  text-align: center;
+  color:#ffa343;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-size: var(--h2-font);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  color: #ffffffab;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  outline: none;
+  border: 2px solid #6196c1; /* Warna border saat fokus */
+}
+
+.login-button {
+  display: inline-block;
+  background-color: #ffa343;
+  color: #070c03;
+  border: 2px solid transparent;
+  padding: 12px 20px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
+
+
+/* CSS untuk Registrasi */
+
+.register-container {
+  background-image: url('../imagesProperty/sipiso2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.register-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam untuk efek */
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.register-title {
+  text-align: center;
+  color:#ffa343;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-size: var(--h2-font);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  color: #ffffffab;
+}
+
+.register-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.register-input:focus {
+  outline: none;
+  border: 2px solid #6196c1; /* Warna border saat fokus */
+}
+
+.register-button {
+  display: inline-block;
+  background-color: #ffa343;
+  color: #070c03;
+  border: 2px solid transparent;
+  padding: 12px 20px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
+p {
+  font-size: 14px;
+  color: #ffffffab;
+  text-align: center;
+}
+
+a {
+  color: #ffa343;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
