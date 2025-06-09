@@ -14,14 +14,20 @@ return new class extends Migration
         Schema::create('culinaries', function (Blueprint $table) {
             $table->id('id_culinaries');
             $table->unsignedBigInteger('id_destinations');
-          # $table->foreign('id_destinations')->references('id_destinations')->on('destinations')->onDelete('cascade');
+            $table->foreign('id_destinations')->references('id_destinations')->on('destinations')->onDelete('cascade');
             $table->string('name');
             $table->string('location');
+            #$table->unsignedBigInteger('id_locations');
+            #$table->foreign('id_locations')->references('id_locations')->on('locations')->onDelete('cascade');
             $table->decimal('price', 10, 2); // contoh: Rp 25.000,00
             $table->decimal('rating', 3, 2);
             $table->string('cuisine_type');
             $table->text('description');
             $table->string('image_url')->nullable();
+            $table->string('image_url2')->nullable();
+            $table->string('image_url3')->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }

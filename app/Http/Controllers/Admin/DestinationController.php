@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 
 class DestinationController extends Controller
 {
-    // Tampilkan daftar destinations
     public function index()
     {
         $totalDestinations = \App\Models\Destination::count();
@@ -23,7 +22,8 @@ class DestinationController extends Controller
         $newUsers = \App\Models\User::latest()->take(5)->get();
 
         $destinations = Destination::all();
-        return view('admin\destinations.index', compact(
+
+        return view('Admin.destinations.index', compact(
             'totalDestinations',
             'totalCulinaries',
             'totalStays',
@@ -36,13 +36,11 @@ class DestinationController extends Controller
         ));
     }
 
-    // Tampilkan form tambah destination
     public function create()
     {
         return view('Admin.destinations.create');
     }
 
-    // Simpan destination baru
     public function store(Request $request)
     {
         $request->validate([
@@ -50,13 +48,26 @@ class DestinationController extends Controller
             'location' => 'required',
             'category' => 'required',
             'rating' => 'required|numeric|min:0|max:5',
+            'price' => 'required|numeric|min:0',
             'description' => 'required',
+            'longitude' => 'nullable|numeric',
+            'latitude' => 'nullable|numeric',
             'image_file' => 'nullable|image|max:2048',
+            'image_file2' => 'nullable|image|max:2048',
+            'image_file3' => 'nullable|image|max:2048',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image_file')) {
-            $imagePath = $request->file('image_file')->store('images/destinations', 'public');
+        $image1 = $request->hasFile('image_file') ? $request->file('image_file')->store('images/destinations', 'public') : null;
+        $image2 = $request->hasFile('image_file2') ? $request->file('image_file2')->store('images/destinations', 'public') : null;
+        $image3 = $request->hasFile('image_file3') ? $request->file('image_file3')->store('images/destinations', 'public') : null;
+
+        $price = $request->price;
+        if ($price <= 100000) {
+            $priceRange = 'low';
+        } elseif ($price <= 300000) {
+            $priceRange = 'medium';
+        } else {
+            $priceRange = 'high';
         }
 
         Destination::create([
@@ -64,21 +75,25 @@ class DestinationController extends Controller
             'location' => $request->location,
             'category' => $request->category,
             'rating' => $request->rating,
+            'price' => $price,
+            'price_range' => $priceRange,
             'description' => $request->description,
-            'image_url' => $imagePath,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'image_url' => $image1,
+            'image_url2' => $image2,
+            'image_url3' => $image3,
         ]);
 
         return redirect()->route('Admin.destinations.index')->with('success', 'Destination added successfully.');
     }
 
-    // Tampilkan form edit destination
     public function edit($id)
     {
         $destination = Destination::findOrFail($id);
         return view('Admin.destinations.edit', compact('destination'));
     }
 
-    // Update destination yang sudah ada
     public function update(Request $request, $id)
     {
         $destination = Destination::findOrFail($id);
@@ -88,13 +103,37 @@ class DestinationController extends Controller
             'location' => 'required',
             'category' => 'required',
             'rating' => 'required|numeric|min:0|max:5',
+            'price' => 'required|numeric|min:0',
+            'price_range' => 'required|in:low,medium,high',
             'description' => 'required',
+            'longitude' => 'nullable|numeric',
+            'latitude' => 'nullable|numeric',
             'image_file' => 'nullable|image|max:2048',
+            'image_file2' => 'nullable|image|max:2048',
+            'image_file3' => 'nullable|image|max:2048',
         ]);
 
-        $imagePath = $destination->image_url;
+        $image1 = $destination->image_url;
+        $image2 = $destination->image_url2;
+        $image3 = $destination->image_url3;
+
         if ($request->hasFile('image_file')) {
-            $imagePath = $request->file('image_file')->store('images/destinations', 'public');
+            $image1 = $request->file('image_file')->store('images/destinations', 'public');
+        }
+        if ($request->hasFile('image_file2')) {
+            $image2 = $request->file('image_file2')->store('images/destinations', 'public');
+        }
+        if ($request->hasFile('image_file3')) {
+            $image3 = $request->file('image_file3')->store('images/destinations', 'public');
+        }
+
+        $price = $request->price;
+        if ($price <= 100000) {
+            $priceRange = 'low';
+        } elseif ($price <= 300000) {
+            $priceRange = 'medium';
+        } else {
+            $priceRange = 'high';
         }
 
         $destination->update([
@@ -102,14 +141,19 @@ class DestinationController extends Controller
             'location' => $request->location,
             'category' => $request->category,
             'rating' => $request->rating,
+            'price' => $price,
+            'price_range' => $priceRange,
             'description' => $request->description,
-            'image_url' => $imagePath,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'image_url' => $image1,
+            'image_url2' => $image2,
+            'image_url3' => $image3,
         ]);
 
         return redirect()->route('Admin.destinations.index')->with('success', 'Destination updated successfully.');
     }
 
-    // Hapus destination
     public function destroy($id)
     {
         $destination = Destination::findOrFail($id);

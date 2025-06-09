@@ -4,44 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Destination;
 
 class Stay extends Model
 {
     use HasFactory;
 
-    // Nama tabel (opsional jika sesuai konvensi Laravel)
     protected $table = 'stays';
-
-    // Primary key kustom
     protected $primaryKey = 'id_stays';
-
-    // Auto-increment
     public $incrementing = true;
-
-    // Tipe primary key
     protected $keyType = 'int';
 
-    // Kolom-kolom yang bisa diisi massal
     protected $fillable = [
         'name',
         'location',
-        'price_range',
+        'price',
         'rating',
         'amenities',
         'description',
         'image_url',
-        'id_destinations',
+        'latitude',
+        'longitude',
     ];
 
     protected $casts = [
-        'amenities' => 'array', // Jika amenities disimpan sebagai JSON
+        'amenities' => 'array', // Jika disimpan sebagai JSON
     ];
 
-    // Relasi: Stay milik satu Destination
     public function destinations()
-{
-    return $this->belongsToMany(Destination::class, 'destination_stay', 'stay_id', 'destination_id');
-}
-
-
+    {
+        return $this->belongsToMany(Destination::class, 'destination_stay', 'stay_id', 'destination_id');
+    }
 }

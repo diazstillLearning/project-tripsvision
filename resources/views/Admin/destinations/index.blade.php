@@ -43,12 +43,18 @@
             flex-direction: column;
             justify-content: space-between;
         }
+        .img-preview {
+            max-width: 100px;
+            margin-bottom: 5px;
+        }
     </style>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="{{ route('Admin.dashboard') }}" class="logo">trips<span>Vision</span></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -60,60 +66,64 @@
             </div>
         </div>
     </nav>
-</head>
-<body>
-<div class="container mt-5">
-    <h1>Manage Destinations</h1>
-    <a href="{{ route('Admin.destinations.create') }}" class="btn btn-primary mb-3">Add Destination</a>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+    <div class="container mt-5">
+        <h1>Manage Destinations</h1>
+        <a href="{{ route('Admin.destinations.create') }}" class="btn btn-primary mb-3">Add Destination</a>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Price Range</th>
-                <th>Rating</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($destinations as $destination)
-            <tr>
-                <td>{{ $destination->id_destinations }}</td>
-                <td>{{ $destination->name }}</td>
-                <td>{{ $destination->location }}</td>
-                <td>{{ ucfirst($destination->price_range) }}</td>
-                <td>{{ $destination->rating }}</td>
-                <td>{{ $destination->category }}</td>
-                <td>{{ $destination->description }}</td>
-                <td>
-                    @if($destination->image_url)
-                        <img src="{{ asset('storage/' . $destination->image_url) }}" alt="Destination Image" style="max-width: 100px;">
-                   
-                    @endif
-                </td>
-                <td>
-                    <a href="{{ route('Admin.destinations.edit', $destination->id_destinations) }}" class="btn btn-warning btn-sm">Edit</a>
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-                    <form action="{{ route('Admin.destinations.destroy', $destination->id_destinations) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                    <th>Klasifikasi</th>
+                    <th>Rating</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Longitude</th> 
+                    <th>Latitude</th>
+                    <th>Images</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($destinations as $destination)
+                    <tr>
+                        <td>{{ $destination->id_destinations }}</td>
+                        <td>{{ $destination->name }}</td>
+                        <td>{{ $destination->location }}</td>
+                        <td>{{ ucfirst($destination->price) }}</td>
+                        <td>{{ ucfirst($destination->price_range)}}</td>
+                        <td>{{ $destination->rating }}</td>
+                        <td>{{ $destination->category }}</td>
+                        <td>{{ $destination->description }}</td>
+                        <td>{{ $destination->longitude }}</td> <!-- Tambahan -->
+                        <td>{{ $destination->latitude }}</td>  <!-- Tambahan -->
+                        <td>
+                            @foreach (['image_url', 'image_url2', 'image_url3'] as $img)
+                                @if (!empty($destination->$img))
+                                    <img src="{{ asset('storage/' . $destination->$img) }}" class="img-preview" alt="Image">
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            <a href="{{ route('Admin.destinations.edit', $destination->id_destinations) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('Admin.destinations.destroy', $destination->id_destinations) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </body>
-</html>
 </html>
