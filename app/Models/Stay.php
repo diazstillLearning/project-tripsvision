@@ -19,10 +19,13 @@ class Stay extends Model
         'name',
         'location',
         'price',
+        'price_range', // Jika menggunakan price_range
         'rating',
         'amenities',
         'description',
         'image_url',
+        'image_url2',
+        'image_url3',
         'latitude',
         'longitude',
     ];
@@ -33,6 +36,6 @@ class Stay extends Model
 
     public function destinations()
     {
-        return $this->belongsToMany(Destination::class, 'destination_stay', 'stay_id', 'destination_id');
+        return $this->belongsToMany(Destination::class, 'destination_stay', 'id_stays', 'id_destinations');
     }
 }

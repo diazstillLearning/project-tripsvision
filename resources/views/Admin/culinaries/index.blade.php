@@ -37,24 +37,25 @@
             text-align: center;
             border-top: 1px solid #ddd;
         }
-        .recent-activities {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .image-preview img {
+            max-width: 100px;
+            margin-bottom: 5px;
         }
     </style>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="{{ route('Admin.dashboard') }}" class="logo">trips<span>Vision</span></a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -65,53 +66,67 @@
 <div class="container mt-5">
     <h1>Manage Culinaries</h1>
     <a href="{{ route('Admin.culinaries.create') }}" class="btn btn-primary mb-3">Add Culinary</a>
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Price Range</th>
-                <th>Rating</th>
-                <th>Cuisine Type</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($culinaries as $culinary)
-            <tr>
-                <td>{{ $culinary->id_culinaries }}</td>
-                <td>{{ $culinary->name }}</td>
-                <td>{{ $culinary->location }}</td>
-                <td>{{ ucfirst($culinary->price_range) }}</td>
-                <td>{{ $culinary->rating }}</td>
-                <td>{{ $culinary->cuisine_type }}</td>
-                <td>{{ $culinary->description }}</td>
-                <td>
+
+   <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Klasifikasi</th>
+            <th>Rating</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Images</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($culinaries as $culinary)
+        <tr>
+            <td>{{ $culinary->id_culinaries }}</td>
+            <td>{{ $culinary->name }}</td>
+            <td>{{ $culinary->location }}</td>
+            <td>{{ ucfirst($culinary->price) }}</td>
+            <td>{{ ucfirst($culinary->price_range)}}</td>
+            <td>{{ $culinary->rating }}</td>
+            <td>{{ $culinary->cuisine_type }}</td>
+            <td>{{ $culinary->description }}</td>
+            <td>{{ $culinary->longitude }}</td>
+            <td>{{ $culinary->latitude }}</td>
+            <td>
+                <div class="image-preview">
                     @if($culinary->image_url)
-                        <img src="{{ asset('storage/' . $culinary->image_url) }}" alt="Culinary Image" style="max-width: 100px;">
-                    @else
-                        No Image
+                        <div><small>Image 1</small><br><img src="{{ asset('storage/' . $culinary->image_url) }}" alt="Image 1" width="80"></div>
                     @endif
-                </td>
-                <td>
-                    <a href="{{ route('Admin.culinaries.edit', $culinary->id_culinaries) }}" class="btn btn-warning btn-sm">Edit</a>
+                    @if($culinary->image_url2)
+                        <div><small>Image 2</small><br><img src="{{ asset('storage/' . $culinary->image_url2) }}" alt="Image 2" width="80"></div>
+                    @endif
+                    @if($culinary->image_url3)
+                        <div><small>Image 3</small><br><img src="{{ asset('storage/' . $culinary->image_url3) }}" alt="Image 3" width="80"></div>
+                    @endif
+                </div>
+            </td>
+            <td>
+                <a href="{{ route('Admin.culinaries.edit', $culinary->id_culinaries) }}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="{{ route('Admin.culinaries.destroy', $culinary->id_culinaries) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
-                    <form action="{{ route('Admin.culinaries.destroy', $culinary->id_culinaries) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
 </div>
 </body>
+</html>

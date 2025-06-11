@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\StayController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CulinaryController;
 use App\Http\Controllers\TravelPackageController;
-
+use App\Http\Controllers\UserDashboardController;
 // --- Guest Routes ---
 
 Route::get('/', function () {
@@ -70,3 +70,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard', [TravelPackageController::class, 'index'])->name('dashboard');
 Route::get('/recommendations', [TravelPackageController::class, 'recommendations'])->name('recommendations');
 
+#dashboarduser
+Route::get('/userDashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');

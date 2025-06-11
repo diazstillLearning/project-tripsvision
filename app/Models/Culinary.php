@@ -18,17 +18,20 @@ class Culinary extends Model
     protected $fillable = [
         'name',
         'location',
+        'price',
         'price_range',
         'rating',
         'cuisine_type',
         'description',
         'image_url',
+        'image_url2',
+        'image_url3',
         'latitude',
         'longitude',
     ];
 
     public function destinations()
     {
-        return $this->belongsToMany(Destination::class, 'culinary_destination', 'culinary_id', 'destination_id');
+        return $this->belongsToMany(Destination::class, 'culinary_destination', 'culinary_id', 'id_destinations');
     }
 }

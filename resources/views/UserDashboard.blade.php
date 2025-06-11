@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tripsVision</title>
 
+
   <!-- LOCAL CSS (Fix This) -->
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
@@ -13,7 +14,7 @@
       <a href="#" class="logo">trips<span>Vision</span></a>
 
       <ul class="navbar">
-        <li><a href="#">Homew</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="../planner.php">Plan</a></li>
         <li><a href="#">Destinations</a></li>
         <li><a href="#">Culinary</a></li>
@@ -28,29 +29,35 @@
     </header>
 
     <!-- home section design -->
-    <section class="home">
-      <div class="home-text">
-        <h5>Let's</h5>
-        <h1>                          
-          Planning your <br />
-          own travel
-        </h1>
-        <p>
-          Indonesia, a Southeast Asian Nation made up of thousand of volcanic
-          <br />
-          islands, is home to hundreds og ethnic groups speaking
-        </p>
-        <a href="../planner.php" class="btn">Make a plan</a>
-        
-      </div>
-    </section>
+<section class="home">
+  <div class="home-text">
+    <h5>Let's</h5>
+    <h1>                          
+      Planning your <br />
+      own travel
+    </h1>
+    <p>
+      Indonesia, a Southeast Asian Nation made up of thousand of volcanic
+      <br />
+      islands, is home to hundreds og ethnic groups speaking
+    </p>
+    <a href="../planner.php" class="btn">Make a plan</a>
+  </div>
+  
+  <!-- Struktur gambar yang diperbaiki -->
+  <div class="home-image">
+    <div class="home-image-container">
+      <img src="../Gambarhome.jpg" alt="Beautiful Indonesia Tourism" />
+    </div>
+  </div>
+</section>
 
     <!-- feature section design -->
     <section class="feature">
       <div class="feature-content">
         <div class="row">
           <div class="row-img">
-            <img src="../assets/imagesProperty/danauToba.jpg" alt="Danau Toba" />
+            <img src="../DanauToba.jpg" alt="">
           </div>
           <h4>Danau Toba</h4>
         </div>

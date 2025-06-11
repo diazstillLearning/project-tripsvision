@@ -104,7 +104,7 @@ class DestinationController extends Controller
             'category' => 'required',
             'rating' => 'required|numeric|min:0|max:5',
             'price' => 'required|numeric|min:0',
-            'price_range' => 'required|in:low,medium,high',
+            'price_range'=> 'nullable|string',
             'description' => 'required',
             'longitude' => 'nullable|numeric',
             'latitude' => 'nullable|numeric',

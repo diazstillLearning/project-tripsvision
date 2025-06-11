@@ -49,13 +49,8 @@
         </div>
 
         <div class="form-group mb-3">
-            <label for="price_range">Price Range</label>
-            <select name="price_range" class="form-control" required>
-                <option value="">-- Select --</option>
-                <option value="low" {{ old('price_range') == 'low' ? 'selected' : '' }}>Low</option>
-                <option value="medium" {{ old('price_range') == 'medium' ? 'selected' : '' }}>Medium</option>
-                <option value="high" {{ old('price_range') == 'high' ? 'selected' : '' }}>High</option>
-            </select>
+            <label for="price">Price (Rp)</label>
+            <input type="number" name="price" class="form-control" value="{{ old('price') }}" required>
         </div>
 
         <div class="form-group mb-3">
@@ -67,27 +62,33 @@
             <label for="cuisine_type">Cuisine Type</label>
             <input type="text" name="cuisine_type" class="form-control" value="{{ old('cuisine_type') }}" required>
         </div>
+         <div class="form-group mb-3">
+            <label for="longitude">Longitude</label>
+            <input type="text" name="longitude" class="form-control" value="{{ old('longitude') }}" placeholder="e.g., 107.6191">
+        </div>
 
+        <div class="form-group mb-3">
+            <label for="latitude">Latitude</label>
+            <input type="text" name="latitude" class="form-control" value="{{ old('latitude') }}" placeholder="e.g., -6.9175">
+        </div>
         <div class="form-group mb-3">
             <label for="description">Description</label>
             <textarea name="description" rows="3" class="form-control">{{ old('description') }}</textarea>
         </div>
 
         <div class="form-group mb-3">
-            <label for="id_destinations">Destination</label>
-            <select name="id_destinations" class="form-control" required>
-                <option value="">-- Choose Destination --</option>
-                @foreach($destinations as $destination)
-                    <option value="{{ $destination->id_destinations }}" {{ old('id_destinations') == $destination->id_destinations ? 'selected' : '' }}>
-                        {{ $destination->name }} ({{ $destination->location }})
-                    </option>
-                @endforeach
-            </select>
+            <label for="image_file">Image 1 (optional)</label>
+            <input type="file" name="image_file" class="form-control" accept="image/*">
         </div>
 
         <div class="form-group mb-3">
-            <label for="image_file">Image (optional)</label>
-            <input type="file" name="image_file" class="form-control" accept="image/*">
+            <label for="image_file2">Image 2 (optional)</label>
+            <input type="file" name="image_file2" class="form-control" accept="image/*">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="image_file3">Image 3 (optional)</label>
+            <input type="file" name="image_file3" class="form-control" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-success">Save Culinary</button>

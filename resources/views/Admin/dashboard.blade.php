@@ -54,8 +54,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </li>
+                    <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+                </li>
                 </ul>
             </div>
         </div>

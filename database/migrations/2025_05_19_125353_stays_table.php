@@ -18,14 +18,17 @@ return new class extends Migration
             #$table->foreign('id_locations')->references('id_locations')->on('locations')->onDelete('cascade');
             $table->string('location');
             $table->decimal('price', 10, 2); // contoh: Rp 25.000,00
+            $table->string('price_range')->nullable(); // c
             $table->decimal('rating', 3, 2)->nullable();
             $table->text('amenities')->nullable();
             $table->text('description')->nullable();
             $table->string('image_url')->nullable();
             $table->string('image_url2')->nullable();
             $table->string('image_url3')->nullable();
-            $table->unsignedBigInteger('id_destinations');
-            $table->foreign('id_destinations')->references('id_destinations')->on('destinations')->onDelete('cascade');
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            #$table->unsignedBigInteger('id_destinations')->nullable();
+            #$table->foreign('id_destinations')->references('id_destinations')->on('destinations')->onDelete('cascade');
             $table->timestamps();
         });
     }

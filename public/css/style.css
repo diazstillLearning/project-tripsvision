@@ -337,9 +337,10 @@ a:hover {
 /* Login Section Styling */
 .login-container {
   position: relative;
-  background-image: url('../imagesProperty/sipiso2.jpg'); /* Ganti dengan path gambar yang sesuai */
+  background-image: url('../background_login.jpg'); /* Ganti dengan path gambar yang sesuai */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -378,6 +379,7 @@ a:hover {
   font-size: 16px;
   margin-top: 8px;
   box-sizing: border-box;
+  
 }
 
 .login-input:focus {
@@ -411,7 +413,7 @@ a:hover {
 /* CSS untuk Registrasi */
 
 .register-container {
-  background-image: url('../imagesProperty/sipiso2.jpg');
+  background-image: url('../background_login.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;

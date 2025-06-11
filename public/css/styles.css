@@ -1,0 +1,676 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #ff6b35;
+    --secondary-color: #004e89;
+    --accent-color: #1a659e;
+    --text-dark: #2c3e50;
+    --text-light: #666;
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar li a {
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar li a:hover {
+    color: var(--primary-color);
+    background: rgba(255, 107, 53, 0.1);
+    transform: translateY(-2px);
+}
+
+.h-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.h-right a {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.h-right a:hover {
+    color: var(--primary-color);
+    background: rgba(255, 107, 53, 0.1);
+    transform: scale(1.1);
+}
+
+/* Home Section */
+.home {
+    min-height: 100vh;
+    background: var(--light-bg);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    padding: 0 5%;
+    gap: 4rem;
+    position: relative;
+}
+
+.home-text {
+    max-width: 600px;
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+    padding: 2rem 0;
+}
+
+.home-image {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    justify-self: center;
+    animation: fadeInRight 1s ease 0.3s both;
+}
+
+.home-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    background: var(--light-bg);
+}
+
+.home-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 78, 137, 0.1), rgba(26, 101, 158, 0.1));
+    z-index: 1;
+    border-radius: 25px;
+}
+
+.home-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    border-radius: 25px;
+}
+
+.home-image-container:hover img {
+    transform: scale(1.08);
+}
+
+/* Decorative elements */
+.home-image::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 150px;
+    height: 150px;
+    background: var(--gradient);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.home-image::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.home-text h5 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.home-text h1 {
+    color: var(--text-dark);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.home-text p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--gradient);
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Feature Section */
+.feature {
+    padding: 5rem 5%;
+    background: var(--light-bg);
+}
+
+.feature-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.row:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.row-img {
+    height: 200px;
+    overflow: hidden;
+}
+
+.row-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.row:hover .row-img img {
+    transform: scale(1.1);
+}
+
+.row h4 {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+/* Holiday Section */
+.holiday {
+    padding: 5rem 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.holiday-img {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.holiday-img img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.holiday-img:hover img {
+    transform: scale(1.05);
+}
+
+.holiday-text h5 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.holiday-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.holiday-text p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* Tour Section */
+.tour {
+    padding: 5rem 5%;
+    background: var(--light-bg);
+}
+
+.center-text {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.center-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.tour-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+.box {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.box img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.box:hover img {
+    transform: scale(1.1);
+}
+
+.box h6 {
+    padding: 1rem 1.5rem 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.box h4 {
+    padding: 0 1.5rem 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.center-btn {
+    text-align: center;
+}
+
+/* Culture Section */
+.Culture {
+    padding: 5rem 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Culture-text h5 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.Culture-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.Culture-text p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.Culture-img {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.Culture-img img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.Culture-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Footer Section */
+.footer {
+    background: var(--text-dark);
+    padding: 3rem 5% 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-box h3 {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer-box a {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.footer-box a:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social a {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social a:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 3%;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem 0;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+    
+    .home {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 8rem 3% 3rem;
+        gap: 3rem;
+    }
+    
+    .home-image {
+        order: -1;
+        max-width: 400px;
+    }
+    
+    .home-image-container {
+        padding-bottom: 65%; /* Slightly different ratio for mobile */
+    }
+    
+    .home-text {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .home-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .holiday,
+    .Culture {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .Culture {
+        grid-template-areas: 
+            "img"
+            "text";
+    }
+    
+    .Culture-text {
+        grid-area: text;
+    }
+    
+    .Culture-img {
+        grid-area: img;
+    }
+    
+    .tour-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        padding: 6rem 3% 2rem;
+        gap: 2rem;
+    }
+    
+    .home-text h1 {
+        font-size: 2rem;
+    }
+    
+    .home-image {
+        max-width: 300px;
+    }
+    
+    .home-image-container {
+        padding-bottom: 60%;
+    }
+    
+    .holiday-text h2,
+    .Culture-text h2,
+    .center-text h2 {
+        font-size: 2rem;
+    }
+    
+    .feature,
+    .tour,
+    .holiday,
+    .Culture {
+        padding: 3rem 3%;
+    }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation for images */
+img {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
