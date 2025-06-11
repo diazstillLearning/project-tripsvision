@@ -53,6 +53,15 @@
             <img src="../assets/imagesProperty/danauToba.jpg" alt="Danau Toba" />
           </div>
           <h4>Danau Toba</h4>
+                      <!-- Ganti card Danau Toba -->
+<div class="row">
+  <a href="{{ route('destinations.show', 'danau-toba') }}" class="destination-link">
+    <div class="row-img">
+      <img src="{{ asset('assets/imagesProperty/danauToba.jpg') }}" alt="Danau Toba" />
+    </div>
+    <h4>Danau Toba</h4>
+  </a>
+</div>
         </div>
         <div class="row">
           <div class="row-img">
@@ -67,15 +76,14 @@
           <div class="row-img">
             <img src="../assets/imagesProperty/danauToba.jpg" alt="Danau Toba" />
           </div>
-          <h4>Danau Toba</h4>
+       <div class="row">
+      <a href="./views/destination-detail.blade.php" class="destination-link">
+        <div class="row-img">
+          <img src="../assets/imagesProperty/danauToba.jpg" alt="Danau Toba" />
         </div>
-        <div class="row">
-          <div class="row-img">
-            <img
-              src="../assets/imagesProperty/gunungTangkubanPerahu.jpg"
-              alt="gunungTangkubanPerahu"
-            />
-          </div>
+        <h4>Danau Toba</h4>
+      </a>
+    </div>
           <h4>Tangkuban Perahu</h4>
         </div>
       </div>

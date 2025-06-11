@@ -13,6 +13,20 @@ use App\Http\Controllers\TravelPackageController;
 use App\Http\Controllers\UserDashboardController;
 // --- Guest Routes ---
 
+
+// Tambahkan routes ini
+Route::get('/destinations/{slug}', [DestinationController::class, 'show'])->name('destinations.show');
+
+// API routes untuk review (authenticated)
+Route::middleware('auth:sanctum')->prefix('api')->group(function () {
+    Route::get('/reviews', [App\Http\Controllers\Api\ReviewApiController::class, 'index']);
+    Route::post('/reviews', [App\Http\Controllers\Api\ReviewApiController::class, 'store']);
+    Route::put('/reviews/{id}', [App\Http\Controllers\Api\ReviewApiController::class, 'update']);
+    Route::delete('/reviews/{id}', [App\Http\Controllers\Api\ReviewApiController::class, 'destroy']);
+    Route::post('/reviews/{id}/vote', [App\Http\Controllers\Api\ReviewApiController::class, 'vote']);
+    Route::get('/reviews/user/destination', [App\Http\Controllers\Api\ReviewApiController::class, 'getUserReview']);
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
